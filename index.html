@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>55club Referral Program</title>
+    <style>
+        :root {
+            --primary-blue: #003B73;
+            --primary-orange: #FF6B00;
+            --background-peach: #FFF5EB;
+            --text-dark: #2D3748;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 2rem;
+            background-color: #f8fafc;
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .wallet-section, .deposit-section {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .wallet-header, .deposit-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .wallet-balance h2, .deposit-header h2 {
+            margin: 0;
+            font-size: 1.25rem;
+        }
+
+        .balance-amount {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
+        .wallet-actions, .deposit-content {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .wallet-input, .deposit-input {
+            background-color: white;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 1rem;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .wallet-button, .deposit-button {
+            background-color: var(--primary-orange);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .wallet-button:hover, .deposit-button:hover {
+            background-color: #e65c00;
+        }
+
+        .hero {
+            background-color: var(--background-peach);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: var(--primary-blue);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .rewards {
+            display: flex;
+            justify-content: space-around;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .reward-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            flex: 1;
+        }
+
+        .reward-amount {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-orange);
+            margin: 1rem 0;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .step {
+            background: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 4px -1px rgb(0 0 0 / 0.1);
+        }
+
+        .step-number {
+            background: var(--primary-blue);
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .referral-code {
+            background: var(--background-peach);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 2rem 0;
+            max-width: 300px;
+            margin-inline: auto;
+        }
+
+        .copy-button {
+            background: var(--primary-orange);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .copy-button:hover {
+            opacity: 0.9;
+        }
+
+        .wallet-info {
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            color: #ffd700;
+        }
+
+        .qr-code {
+            background-color: white;
+            width: 150px;
+            height: 150px;
+            margin: 1rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--text-dark);
+        }
+
+        .upi-id {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .important-note {
+          background-color: rgba(255, 255, 255, 0.1);
+          border-left: 4px solid var(--primary-orange);
+          padding: 0.5rem 1rem;
+          margin-top: 1rem;
+        }
+
+        .important-note p {
+          margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .rewards, .wallet-actions, .deposit-content {
+                flex-direction: column;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .wallet-input, .deposit-input {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="wallet-section" aria-labelledby="wallet-title">
+            <div class="wallet-header">
+                <div class="wallet-balance">
+                    <h2 id="wallet-title">Your Wallet Balance</h2>
+                    <div class="balance-amount">₹100</div>
+                </div>
+                <button class="wallet-button" onclick="alert('Refresh balance')">Refresh</button>
+            </div>
+            <div class="wallet-actions">
+                <input type="text" class="wallet-input" placeholder="Enter UPI ID" aria-label="Enter UPI ID">
+                <button class="wallet-button"  onclick="alert('UPI ID updated')">Update UPI ID</button>
+            </div>
+            <div class="wallet-info important-note">
+                <p><strong>Important:</strong> For updating wallet, deposits, and withdrawals, please contact <a>Lo55clubadmin</a>  on Telegram.</p>
+            </div>
+        </section>
+
+        <section class="hero" aria-labelledby="hero-title">
+            <h1 id="hero-title">Invite Friends & Earn Rewards</h1>
+            <p>Share your referral code and earn when your friends join</p>
+        </section>
+
+        <section class="rewards" aria-labelledby="rewards-title">
+            <h2 id="rewards-title" class="sr-only">Reward Details</h2>
+            <div class="reward-card">
+                <h3>You Get</h3>
+                <div class="reward-amount">₹100</div>
+                <p>For each friend who joins</p>
+            </div>
+            <div class="reward-card">
+                <h3>Your Friend Gets</h3>
+                <div class="reward-amount">₹100</div>
+                <p>When they sign up using your code</p>
+            </div>
+        </section>
+
+        <section class="deposit-section" aria-labelledby="deposit-title">
+            <div class="deposit-header">
+                <h2 id="deposit-title">Deposit Funds</h2>
+            </div>
+            <div class="deposit-content">
+                <div>
+                    <div class="qr-code"><img src="images/3.jpg" alt=""></div>
+                    <div   class="upi-id">UPI ID: 55clubfridaybonus@ybl <br>  send payment and take screenshot or utr id and send in telegram for update balance <br>telegram id : <h2>Lo55clubadmin </h2> <div>  </div>
+                </div>
+                <div>
+                    <input type="number" class="deposit-input" placeholder="Enter amount" aria-label="Enter deposit amount">
+                    <button class="deposit-button" onclick="alert('Deposit initiated')">Deposit</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="wallet-section" aria-labelledby="withdraw-title">
+            <h2 id="withdraw-title" class="sr-only">Withdraw Funds</h2>
+            <div class="wallet-actions">
+                <input type="number" class="wallet-input" placeholder="Enter amount" aria-label="Enter withdrawal amount">
+                <button class="wallet-button" onclick="alert('Withdrawal initiated')">Withdraw</button>
+            </div>
+            <div class="wallet-info">
+                <p>Note: Minimum deposit of ₹300 required to withdraw funds.</p>
+            </div>
+        </section>
+
+        <section class="referral-code" aria-labelledby="referral-title">
+            <h2 id="referral-title" class="sr-only">Your Referral Code</h2>
+            <span id="referral-code">FRIEND202445866568385238</span>
+            <button 
+            
+                class="copy-button" 
+                onclick="navigator.clipboard.writeText('FRIEND2024')"
+                aria-label="Copy referral code"
+            >
+                Copy Code
+            </button>
+        </section>
+
+        <h1>contact us admin in telegram Id : Lo55clubadmin</h1>
+
+
+        <section class="steps" aria-labelledby="steps-title">
+            <h2 id="steps-title" class="sr-only">How It Works</h2>
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Share Your Code</h3>
+                <p>Invite friends using your unique referral code</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Friend Signs Up</h3>
+                <p>Your friend creates an account using your code</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Get Rewarded</h3>
+                <p>Both you and your friend receive rewards</p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
